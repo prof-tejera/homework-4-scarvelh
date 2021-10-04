@@ -1,8 +1,18 @@
 .App {
-  padding: 40px;
+    /*padding: 40px; */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+    background-color: lightcoral;
 }
 
 .App header {
-  font-size: 24px;
-  padding-bottom: 20px;
+    font-size: 24px;
+    padding-bottom: 20px;
+    padding-top: 30px;
+    padding-left: 60px;
+
 }
+
