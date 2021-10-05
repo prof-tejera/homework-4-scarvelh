@@ -37,6 +37,6 @@ For other ways to deploy see https://github.com/prof-tejera/react-deployment-cod
 
 `npm i && npm start`
 
-Please Note:  the app is running in a docker environment on one off my test servers.
+Please Note:  the app is running in a docker environment on one of my test servers.
 Source code have been checked in to the homework site.
 Open [http://74.208.183.29:3000](http://74.208.183.29:3000)
