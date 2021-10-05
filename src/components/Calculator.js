@@ -3,6 +3,7 @@ import Number from "./Number";
 import Operator from "./Operator";
 import Screen from "./Screen";
 import { evaluate } from "mathjs";
+import { splitMulti, replaceLast } from "./utils/utilities";
 // align text in a grid
 const AlignGrid = {
 
@@ -41,15 +42,38 @@ class Calculator extends Component {
     operator: null,
     // keep the value of what is on the calculator screen
     calculatorValues: ""
+    //   g:[]
   };
 
   handleNumberClick = (number) => {
     // remove the '+' for the +/- key
-    if (number === "+/-") {
-      number = "-";
-    }
+    // if (number === "+/-") {
+    //
+    //   number = "-";
+    //   console.log("STOP");
+    // }
     // append the values that is press to the state value 'calculatorValues'
-    this.setState({ calculatorValues: this.state.calculatorValues + number });
+    if (number === "+/-") {
+      let currentScreen = this.state.calculatorValues;
+
+      let number_array = splitMulti(currentScreen.toString(), ["*", "-", "+", "/"]);
+
+      // create new concatenated value
+      let concatValue = "-" + number_array[number_array.length - 1];
+
+      // a little wired but it works
+      if (number_array.length <= 2 && currentScreen.toString().substring(0, 1) === "-") {
+        concatValue = number_array[number_array.length - 1];
+      }
+      // append a '-' sign in from of the last number in the array if the '+/-' ket was pressed
+      let updatedFormula = replaceLast(currentScreen.toString(), (number_array[number_array.length - 1]), concatValue);
+      // update state with the new updated values
+      this.setState({ calculatorValues: updatedFormula });
+
+    } else {
+      this.setState({ calculatorValues: this.state.calculatorValues + number });
+
+    }
 
   };
 
